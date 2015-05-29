@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using System.Data;
+
 using System.Web.UI.WebControls;
 
 namespace DigitalbEFF.Model
@@ -14,7 +14,24 @@ namespace DigitalbEFF.Model
         ContextModels db = new ContextModels();
         public void InsertOrUpdate(EmpresaModel empresa)
         {
-            db.Entry(empresa).State = empresa.Id == 0 ? EntityState.Added : EntityState.Modified;   
+            try
+            {
+                if (empresa.Id != 0)
+                {
+                    db.Empresas.
+                }
+                else
+                {
+                    db.Empresas.Add(empresa);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error ao carregar os dados" + ex.Message);
+            }
+           
         }
 
         public void Delete(int id)
