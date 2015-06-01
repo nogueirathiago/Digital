@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using DigitalbEFF.Model;
 
@@ -41,9 +38,6 @@ namespace DigitalbEFF
 
             switch (e.CommandName)
             {
-                case "Adicionar":
-                    ModalInsert.Show();
-                    break;
                 case "Excluir":
                     cliente.Delete(id);
                     gridDados.DataBind();
@@ -52,7 +46,7 @@ namespace DigitalbEFF
                 case "Editar":
 
                     CarregarModal(id);
-                    ModalUpdate.Show();
+                    ModalInsert.Show();
                     break;
 
                 default:
@@ -79,22 +73,28 @@ namespace DigitalbEFF
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
-            var cliente = new EmpresaCrud();
-            var objCliente = new EmpresaModel();
+  
 
-            objCliente.Nome = txtNome.Text;
-            objCliente.email = txtEmail.Text;
-            objCliente.Cep = txtCep.Text;
-            objCliente.Cnpj = txtCnpj.Text;
-            objCliente.Contato = txtContato.Text;
-            objCliente.Endereço = txtEndereco.Text;
-            objCliente.Uf = txtEstado.Text;
-            objCliente.Municipio = txtMun.Text;
-            objCliente.Telefone = txtTelefone.Text;
+                var cliente = new EmpresaCrud();
+                var objCliente = new EmpresaModel();
 
-            cliente.InsertOrUpdate(objCliente);
+                objCliente.Nome = txtNome.Text;
+                objCliente.email = txtEmail.Text;
+                objCliente.Cep = txtCep.Text.Replace(".", "").Replace("/", "").Replace("-", ""); ;
+                objCliente.Cnpj = txtCnpj.Text.Replace(".","").Replace("/","").Replace("-","");
+                objCliente.Contato = txtContato.Text;
+                objCliente.Endereço = txtEndereco.Text;
+                objCliente.Uf = txtEstado.Text;
+                objCliente.Municipio = txtMun.Text;
+                objCliente.Telefone = txtTelefone.Text.Replace("(", "").Replace(")", "").Replace("-", ""); ;
 
-            gridDados.DataBind();
+                cliente.InsertOrUpdate(objCliente);
+
+
+                CarregarGrid();
+                gridDados.DataBind();
+            
+
 
         }
     }

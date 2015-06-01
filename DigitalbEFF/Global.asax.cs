@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
-using DigitalbEFF;
+using DigitalbEFF.Model;
 
 namespace DigitalbEFF
 {
@@ -16,6 +16,10 @@ namespace DigitalbEFF
             // Code that runs on application startup
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();
+            ContextModels ctx = new ContextModels();
+            ctx.Database.CreateIfNotExists();
+
+
         }
 
         void Application_End(object sender, EventArgs e)

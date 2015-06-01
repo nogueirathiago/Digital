@@ -1,10 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Empresa.aspx.cs" MasterPageFile="~/Site.Master" Inherits="DigitalbEFF.Empresa" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=15.1.2.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <script type="text/javascript" src="../Scripts/Empresa.js"></script>
     <asp:HiddenField runat="server" ID="hdn" />
     <%--<asp:FormView runat="server" ID="FormCadastro" DefaultMode="Insert" ItemType="DigitalbEFF.Model.EmpresaModel" InsertMethod="FormCadastro_InsertItem"
         CellPadding="4" ForeColor="#333333" DataKeyNames="Id">
@@ -59,7 +60,7 @@
     <asp:ModalPopupExtender ID="ModalInsert" runat="server" TargetControlID="HyperLink1" PopupControlID="PainelModal">
     </asp:ModalPopupExtender>
 
-    <asp:Panel ID="PainelModal" runat="server" Style="display: none" Width="450px" CssClass="modalPopup">
+    <asp:Panel ID="PainelModal" runat="server" Style="display: none" Width="750px" CssClass="modalPopup">
         <asp:Panel ID="PainelCabecalho" runat="server" Style="border-bottom: solid 1px Gray; height: 25px;">
             <div>
                 <h1 style="line-height: 25px; text-align: center; font-size: 14px; font-family: Verdana; background-color: #7AC0DA;">
@@ -67,64 +68,119 @@
                 </h1>
             </div>
         </asp:Panel>
+
         <div>
             <br />
             <br />
-            <table width="100%" style="margin-left: 15px;">
+
+
+            <table width="700px" style="margin-left: 10%;">
                 <tr>
                     <td>Nome:</td>
                     <td>
-                        <asp:TextBox ID="txtNome" runat="server" /></td>
+                        <asp:TextBox ID="txtNome" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" MaxLength="30" />
+
+                        <asp:RequiredFieldValidator ID="rfvtxtNome" ControlToValidate="txtNome"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
                 <tr>
                     <td>Cnpj:</td>
                     <td>
-                        <asp:TextBox ID="txtCnpj" runat="server" /></td>
+                        <asp:TextBox ID="txtCnpj" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
+                    <asp:RequiredFieldValidator ID="rfvtxtCnpj" ControlToValidate="txtCnpj"
+                        runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                        ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+                    </td>
                 </tr>
                 <tr>
                     <td>Contato:</td>
                     <td>
-                        <asp:TextBox ID="txtContato" runat="server" /></td>
+                        <asp:TextBox ID="txtContato" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" MaxLength="30" />
+                        <asp:RequiredFieldValidator ID="rfvtxtContato" ControlToValidate="txtContato"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+
+                    </td>
                 </tr>
                 <tr>
                     <td>Cep:</td>
                     <td>
-                        <asp:TextBox ID="txtCep" runat="server" /></td>
+                        <asp:TextBox ID="txtCep" runat="server" CssClass="txtEmpresa" onblur="carregaCep()" ClientIDMode="Static" />
+                        <asp:RequiredFieldValidator ID="rfvtxtCep" ControlToValidate="txtCep"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+
+                    </td>
                 </tr>
                 <tr>
                     <td>Endereco:</td>
                     <td>
-                        <asp:TextBox ID="txtEndereco" runat="server" /></td>
+                        <asp:TextBox ID="txtEndereco" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" MaxLength="50" />
+                        <asp:RequiredFieldValidator ID="rfvtxtEndereco" ControlToValidate="txtEndereco"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+
+                    </td>
                 </tr>
                 <tr>
                     <td>Municipio:</td>
                     <td>
-                        <asp:TextBox ID="txtMun" runat="server" /></td>
+                        <asp:TextBox ID="txtMun" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
+                        <asp:RequiredFieldValidator ID="rfvtxtMun" ControlToValidate="txtMun"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+
+                    </td>
                 </tr>
                 <tr>
                     <td>Estado:</td>
                     <td>
-                        <asp:TextBox ID="txtEstado" runat="server" /></td>
+                        <asp:TextBox ID="txtEstado" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
+                        <asp:RequiredFieldValidator ID="rfvtxtEstado" ControlToValidate="txtEstado"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+  
+                    </td>
                 </tr>
                 <tr>
                     <td>Telefone:</td>
                     <td>
-                        <asp:TextBox ID="txtTelefone" runat="server" /></td>
+                        <asp:TextBox ID="txtTelefone" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
+                        <asp:RequiredFieldValidator ID="rfvtxtTelefone" ControlToValidate="txtTelefone"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+
+                    </td>
                 </tr>
                 <tr>
                     <td>Email:</td>
                     <td>
-                        <asp:TextBox ID="txtEmail" runat="server" /></td>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" MaxLength="30" />
+                        <asp:RequiredFieldValidator ID="rfvtxtEmail" ControlToValidate="txtEmail"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="red"
+                            ErrorMessage="*Email Invalido!" ControlToValidate="txtEmail"
+                            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                            Display="Dynamic">
+                        </asp:RegularExpressionValidator>
+                    </td>
                 </tr>
- 
+
             </table>
 
+
             <div style="text-align: center;">
-                <asp:Button ID="btnSalvar" runat="server" Text="Salvar" OnClick="btnSalvar_Click" />
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" />
+                <asp:Button ID="btnSalvar" runat="server" Text="Salvar" OnClick="btnSalvar_Click" CausesValidation="True" ValidationGroup="Salvar" ClientIDMode="Static" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClientClick="limpaCampos()" />
             </div>
+
+
 
         </div>
     </asp:Panel>
+
 </asp:Content>
 

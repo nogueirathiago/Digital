@@ -103,6 +103,15 @@ namespace DigitalbEFF {
         protected global::System.Web.UI.WebControls.TextBox txtNome;
         
         /// <summary>
+        /// rfvtxtNome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtNome;
+        
+        /// <summary>
         /// txtCnpj control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace DigitalbEFF {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCnpj;
+        
+        /// <summary>
+        /// rfvtxtCnpj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtCnpj;
         
         /// <summary>
         /// txtContato control.
@@ -121,6 +139,15 @@ namespace DigitalbEFF {
         protected global::System.Web.UI.WebControls.TextBox txtContato;
         
         /// <summary>
+        /// rfvtxtContato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtContato;
+        
+        /// <summary>
         /// txtCep control.
         /// </summary>
         /// <remarks>
@@ -128,6 +155,15 @@ namespace DigitalbEFF {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCep;
+        
+        /// <summary>
+        /// rfvtxtCep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtCep;
         
         /// <summary>
         /// txtEndereco control.
@@ -139,6 +175,15 @@ namespace DigitalbEFF {
         protected global::System.Web.UI.WebControls.TextBox txtEndereco;
         
         /// <summary>
+        /// rfvtxtEndereco control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtEndereco;
+        
+        /// <summary>
         /// txtMun control.
         /// </summary>
         /// <remarks>
@@ -146,6 +191,15 @@ namespace DigitalbEFF {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMun;
+        
+        /// <summary>
+        /// rfvtxtMun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtMun;
         
         /// <summary>
         /// txtEstado control.
@@ -157,6 +211,15 @@ namespace DigitalbEFF {
         protected global::System.Web.UI.WebControls.TextBox txtEstado;
         
         /// <summary>
+        /// rfvtxtEstado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtEstado;
+        
+        /// <summary>
         /// txtTelefone control.
         /// </summary>
         /// <remarks>
@@ -166,6 +229,15 @@ namespace DigitalbEFF {
         protected global::System.Web.UI.WebControls.TextBox txtTelefone;
         
         /// <summary>
+        /// rfvtxtTelefone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtTelefone;
+        
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>
@@ -173,6 +245,24 @@ namespace DigitalbEFF {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        
+        /// <summary>
+        /// rfvtxtEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtEmail;
+        
+        /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// btnSalvar control.
