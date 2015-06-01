@@ -298,6 +298,10 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\BalancaCrud.cs" />
+    <Compile Include="Model\BalancaModel.cs" />
+    <Compile Include="Model\NFModel.cs" />
+    <Compile Include="Model\PedidosModel.cs" />
     <Compile Include="Pages\Empresa.aspx.cs">
       <DependentUpon>Empresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

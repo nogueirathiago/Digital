@@ -9,6 +9,6 @@ namespace DigitalbEFF.Model
     public class ContextModels : DbContext
     {
         public DbSet<EmpresaModel> Empresas { get; set; }
-
+        public DbSet<BalancaModel> Balancas { get; set; }
     }
 }
