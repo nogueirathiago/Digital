@@ -64,3 +64,5 @@ C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.AspNet.x
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.csprojResolveAssemblyReference.cache
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.dll
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.pdb
+C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.Migrations.k.resources
+C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.csproj.GenerateResource.Cache

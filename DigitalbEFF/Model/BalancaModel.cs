@@ -15,13 +15,13 @@ namespace DigitalbEFF.Model
         [MaxLength(30)]
         public string Modelo { get; set; }
 
-        [MaxLength(5)]
+        
         public int Total { get; set; }
 
-        [MaxLength(5)]
+        
         public int Alugadas { get; set; }
 
-        [MaxLength(5)]
+        
         public int Disponíveis { get; set; }
 
     }

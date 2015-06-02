@@ -11,14 +11,16 @@ namespace DigitalbEFF.Model
 
         public int NF { get; set; }
 
-        public int Id_Balanca { get; set; }
+        public virtual ICollection<BalancaModel> Balancas { get; set; }
 
         public int Qt_Balanca { get; set; }
 
         public DateTime DataNF { get; set; }
 
-        public double ValorNF { get; set; }
+        public decimal ValorNF { get; set; }
 
-        public double Total { get; set; }
+        public decimal Total { get; set; }
+
+        public ICollection<PedidosModel> Pedidos { get; set; }
     }
 }

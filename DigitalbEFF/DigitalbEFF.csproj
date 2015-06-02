@@ -298,6 +298,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506020058287_k.cs" />
+    <Compile Include="Migrations\201506020058287_k.Designer.cs">
+      <DependentUpon>201506020058287_k.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BalancaCrud.cs" />
     <Compile Include="Model\BalancaModel.cs" />
     <Compile Include="Model\NFModel.cs" />
@@ -338,6 +343,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201506020058287_k.resx">
+      <DependentUpon>201506020058287_k.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

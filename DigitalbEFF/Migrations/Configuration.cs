@@ -10,7 +10,6 @@ namespace DigitalbEFF.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DigitalbEFF.Model.ContextModels";
         }
 
         protected override void Seed(DigitalbEFF.Model.ContextModels context)

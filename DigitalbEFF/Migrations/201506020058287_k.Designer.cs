@@ -7,13 +7,13 @@ namespace DigitalbEFF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AlterandTabelas : IMigrationMetadata
+    public sealed partial class k : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AlterandTabelas));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(k));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505291832266_AlterandTabelas"; }
+            get { return "201506020058287_k"; }
         }
         
         string IMigrationMetadata.Source

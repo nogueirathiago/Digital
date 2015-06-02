@@ -40,5 +40,7 @@ namespace DigitalbEFF.Model
         [MaxLength(13)]
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string Telefone { get; set; }
+
+        public ICollection<PedidosModel> Pedidos { get; set; }
     }
 }

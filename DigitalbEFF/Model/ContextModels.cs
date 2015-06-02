@@ -10,5 +10,7 @@ namespace DigitalbEFF.Model
     {
         public DbSet<EmpresaModel> Empresas { get; set; }
         public DbSet<BalancaModel> Balancas { get; set; }
+        public DbSet<NFModel> NF { get; set; }
+        public DbSet<PedidosModel> Pedidos { get; set; }
     }
 }

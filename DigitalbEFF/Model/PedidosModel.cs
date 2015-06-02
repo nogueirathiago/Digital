@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DigitalbEFF.Model
 {
@@ -10,10 +11,10 @@ namespace DigitalbEFF.Model
         public int Id { get; set; }
 
         public int Cd_Pedido { get; set; }
+        
+        public virtual NFModel NF { get; set; }
 
-        public int NF { get; set; }
-
-        public int Id_Empresa { get; set; }
+        public virtual EmpresaModel Empresa { get; set; }
 
         public DateTime DataLocacao { get; set; }
 

@@ -18,7 +18,7 @@ namespace DigitalbEFF.Model
             {
                 if (empresa.Id != 0)
                 {
-                    db.Empresas.
+                    //db.Empresas.
                 }
                 else
                 {
