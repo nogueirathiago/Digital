@@ -31,6 +31,7 @@ function limpaCampos() {
     $("#txtEstado").val("");
 }
 
+
 $('#btnSalvar').click(function (e) {
     var isValid = true;
     $('#txtEndereco,#txtMun,#email,#txtNome').each(function () {

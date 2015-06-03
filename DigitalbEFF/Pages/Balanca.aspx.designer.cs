@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DigitalbEFF {
+namespace DigitalbEFF.Pages {
     
     
     public partial class Balanca {
@@ -73,7 +73,7 @@ namespace DigitalbEFF {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtResposta;
+        protected global::System.Web.UI.WebControls.Label txtResposta;
         
         /// <summary>
         /// Button2 control.
@@ -110,15 +110,6 @@ namespace DigitalbEFF {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtTitulo;
-        
-        /// <summary>
-        /// txtCodigo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigo;
         
         /// <summary>
         /// txtModelo control.

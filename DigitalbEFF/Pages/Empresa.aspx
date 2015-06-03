@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Empresa.aspx.cs" MasterPageFile="~/Site.Master" Inherits="DigitalbEFF.Empresa" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Empresa.aspx.cs" MasterPageFile="~/Site.Master" Inherits="DigitalbEFF.Pages.Empresa" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=15.1.2.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
@@ -10,24 +10,37 @@
     <asp:HiddenField runat="server" ID="hdn" />
 
     <div>
-        <asp:TextBox ID="txtPesquisa" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="txtPesquisa" runat="server"></asp:TextBox>
         <asp:DropDownList runat="server" ID="ddlPesquisa" Height="30px" Width="100px" Font-Size="Medium">
-            <asp:ListItem Text="Nome" Value="1"/>
-            <asp:ListItem Text="Cnpj" Value="2"/>
+            <asp:ListItem Text="Nome" Value="1" />
+            <asp:ListItem Text="Cnpj" Value="2" />
         </asp:DropDownList>
-         <asp:Button ID="Button1" runat="server" Text="Pesquisar"   OnClick="btn_Pesquisar" ClientIDMode="Static" />
+        <asp:Button ID="Button1" runat="server" Text="Pesquisar" OnClick="btn_Pesquisar" ClientIDMode="Static" />
     </div>
 
-    <asp:GridView ID="gridDados" runat="server" ItemType="DigitalbEFF.Model.EmpresaModel"  DataKeyNames="Id" OnRowCommand="gridDados_RowCommand">
+    <asp:GridView ID="gridDados" runat="server" DataKeyNames="Id" AutoGenerateColumns="False" CssClass="cssGrid"  OnRowCommand="gridDados_RowCommand" HeaderStyle-BackColor="#7AC0DA" HeaderStyle-ForeColor="White"
+        RowStyle-BackColor="#d3dce0" AlternatingRowStyle-BackColor="White" AlternatingRowStyle-ForeColor="#000" >
         <Columns>
+            <asp:BoundField HeaderText="Empresa" HeaderStyle-CssClass="cssBoundFieldHeader" DataField="Nome" ItemStyle-CssClass="cssBoundField"
+                ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField HeaderText="Cnpj" DataField="Cnpj"  HeaderStyle-CssClass="cssBoundFieldHeader" ItemStyle-CssClass="cssBoundField"
+                ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField HeaderText="Estado" DataField="Uf"  HeaderStyle-CssClass="cssBoundFieldHeader" ItemStyle-CssClass="cssBoundField"
+                ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField HeaderText="Contato" DataField="Contato"  HeaderStyle-CssClass="cssBoundFieldHeader" ItemStyle-CssClass="cssBoundField"
+                ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField HeaderText="Telefone" DataField="Telefone"  HeaderStyle-CssClass="cssBoundFieldHeader" ItemStyle-CssClass="cssBoundField"
+                ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField HeaderText="Email" DataField="email"  HeaderStyle-CssClass="cssBoundFieldHeader" ItemStyle-CssClass="cssBoundField"
+                ItemStyle-HorizontalAlign="Center" />
             <asp:TemplateField ShowHeader="false">
                 <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Excluir" OnClientClick="return confirm('Deseja excluir ?')" CommandArgument='<%#: Item.Id %>' Text="Excluir"></asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Excluir" OnClientClick="return confirm('Deseja excluir ?')" CommandArgument='<%#Eval("Id")%>' Text="Excluir"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="false">
                 <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Editar" CommandArgument='<%#: Item.Id %>' Text="Editar"></asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Editar" CommandArgument='<%#Eval("Id")%>' Text="Editar"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -36,7 +49,7 @@
             Nenhum Registro Encontrado.
         </EmptyDataTemplate>
     </asp:GridView>
-    <div>
+    <div style="margin-top: 5px">
         <asp:HyperLink ID="linkModal" runat="server" Visible="false">HyperLink</asp:HyperLink>
         <asp:HyperLink ID="HyperLink1" runat="server">Adicionar</asp:HyperLink>
     </div>
@@ -49,10 +62,10 @@
 
 
 
-    <asp:Panel ID="pnlResposta" runat="server" Style="width: 400px; background: #7AC0DA; height: 110px;" CssClass="modalPopup">
+    <asp:Panel ID="pnlResposta" runat="server" Style="width: 400px; background: #7AC0DA; height: 70px;" CssClass="modalPopup">
         <div>
             <h1 style="text-align: center; font-size: 14px; font-family: Verdana; background-color: #7AC0DA;">
-                <asp:TextBox ID="txtResposta" BackColor="#7AC0DA" runat="server"></asp:TextBox>
+                <asp:Label ID="txtResposta" BackColor="#7AC0DA" runat="server"></asp:Label>
                 <br />
                 <asp:Button ID="Button2" runat="server" Text="OK" OnClientClick="limpaCampos()" />
             </h1>

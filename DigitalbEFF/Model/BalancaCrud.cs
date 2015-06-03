@@ -41,13 +41,13 @@ namespace DigitalbEFF.Model
             db.Balancas.Remove(cliente);
             db.SaveChanges();
         }
-        public IQueryable<BalancaModel> CarregarDados()
+        public List<BalancaModel> CarregarDados()
         {
             try
             {
                 var dados = db.Balancas;
 
-                return dados;
+                return dados.ToList();
             }
             catch (Exception ex)
             {

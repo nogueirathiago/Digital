@@ -11,8 +11,26 @@
 
         .txtEmpresa {
             width: 400px;
+    
         }
-
+        .cssBoundField {
+            color:black;
+             width: 170px;
+            text-align: left;
+                margin-left: 10px
+        }
+               .cssBoundFieldHeader {
+                   width: 170px;
+                           text-align: left;
+                           margin-left: 10px
+        }
+                          .cssGrid {
+                              margin-bottom: 10px;
+                              border-width: 1px;
+                              
+                              
+        }
+        
         
     </style>
 

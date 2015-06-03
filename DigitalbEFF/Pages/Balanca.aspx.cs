@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Linq;
 using System.Web.UI.WebControls;
 using DigitalbEFF.Model;
 
 
-namespace DigitalbEFF
+namespace DigitalbEFF.Pages
 {
     public partial class Balanca : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!Page.IsPostBack)
+            CarregarGrid();
         }
-        public IQueryable<BalancaModel> CarregarGrid()
+        public void CarregarGrid()
         {
             LimpaCampos();
             var db = new BalancaCrud();
-            return db.CarregarDados();
+            gridDados.DataSource = db.CarregarDados();
+            gridDados.DataBind();
         }
         protected void gridDados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -39,6 +40,12 @@ namespace DigitalbEFF
                     ModalInsert.Show();
                     break;
 
+                case "Visualizar":
+                    ModalResposta.Hide();
+                    CarregarModal(id);
+                    ModalInsert.Show();
+                    break;
+
                 default:
                     break;
             }
@@ -51,7 +58,7 @@ namespace DigitalbEFF
 
             var objUser = user.PesquisarPorId(id);
 
-            txtCodigo.Text = hdn.Value;
+            //txtCodigo.Text = hdn.Value;
             txtModelo.Text = objUser.Modelo;
             txtTotal.Text = objUser.Total.ToString();
             txtDisponíveis.Text = objUser.Disponíveis.ToString();
@@ -74,7 +81,6 @@ namespace DigitalbEFF
 
             txtResposta.Text = cadastro;
             CarregarGrid();
-            gridDados.DataBind();
             ModalResposta.Show();
 
 

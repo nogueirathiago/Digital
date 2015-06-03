@@ -4,7 +4,7 @@ using System.Web.UI.WebControls;
 using DigitalbEFF.Model;
 
 
-namespace DigitalbEFF
+namespace DigitalbEFF.Pages
 {
     public partial class Empresa : System.Web.UI.Page
     {
