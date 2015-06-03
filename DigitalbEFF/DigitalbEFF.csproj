@@ -190,6 +190,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Pages\Balanca.aspx" />
     <Content Include="Pages\Empresa.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -206,6 +207,7 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\Empresa.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
@@ -307,6 +309,13 @@
     <Compile Include="Model\BalancaModel.cs" />
     <Compile Include="Model\NFModel.cs" />
     <Compile Include="Model\PedidosModel.cs" />
+    <Compile Include="Pages\Balanca.aspx.cs">
+      <DependentUpon>Balanca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Balanca.aspx.designer.cs">
+      <DependentUpon>Balanca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Empresa.aspx.cs">
       <DependentUpon>Empresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

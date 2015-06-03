@@ -10,24 +10,18 @@ namespace DigitalbEFF
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-        public IQueryable<EmpresaModel> CarregarGrid()
-        {
-            var db = new EmpresaCrud();
-            return db.CarregarDados();
-        }
-
-        public void FormCadastro_InsertItem()
-        {
-            var db = new EmpresaCrud();
-            var item = new EmpresaModel();
-            TryUpdateModel(item);
-            if (ModelState.IsValid)
+            if (!Page.IsPostBack)
             {
-                db.InsertOrUpdate(item);
-                gridDados.DataBind();
+                CarregarGrid();
             }
+        }
+        public void  CarregarGrid()
+        {
+            LimpaCampos();
+            var db = new EmpresaCrud();
+            gridDados.DataSource = db.CarregarDados();
+            gridDados.DataBind();
+       
         }
         protected void gridDados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -39,12 +33,13 @@ namespace DigitalbEFF
             switch (e.CommandName)
             {
                 case "Excluir":
+                    ModalResposta.Hide();
                     cliente.Delete(id);
                     gridDados.DataBind();
                     break;
 
                 case "Editar":
-
+                    ModalResposta.Hide();
                     CarregarModal(id);
                     ModalInsert.Show();
                     break;
@@ -55,6 +50,8 @@ namespace DigitalbEFF
         }
         public void CarregarModal(int id)
         {
+            ModalResposta.Hide();
+
             var user = new EmpresaCrud();
 
             var objUser = user.PesquisarPorId(id);
@@ -71,31 +68,61 @@ namespace DigitalbEFF
             txtTelefone.Text = objUser.Telefone;
         }
 
+        protected void btn_Pesquisar(object sender, EventArgs e)
+        {
+            var cliente = new EmpresaCrud();
+
+            if (ddlPesquisa.SelectedValue == "1")
+            {
+                gridDados.DataSource = cliente.CarregarDados().Where(x => x.Nome.Contains(txtPesquisa.Text));
+                gridDados.DataBind();
+            }
+            else
+            {
+                gridDados.DataSource = cliente.CarregarDados().Where(x => x.Nome.Contains(txtPesquisa.Text));
+                gridDados.DataBind();
+            }
+        }
+
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
-  
-
-                var cliente = new EmpresaCrud();
-                var objCliente = new EmpresaModel();
-
-                objCliente.Nome = txtNome.Text;
-                objCliente.email = txtEmail.Text;
-                objCliente.Cep = txtCep.Text.Replace(".", "").Replace("/", "").Replace("-", ""); ;
-                objCliente.Cnpj = txtCnpj.Text.Replace(".","").Replace("/","").Replace("-","");
-                objCliente.Contato = txtContato.Text;
-                objCliente.Endereço = txtEndereco.Text;
-                objCliente.Uf = txtEstado.Text;
-                objCliente.Municipio = txtMun.Text;
-                objCliente.Telefone = txtTelefone.Text.Replace("(", "").Replace(")", "").Replace("-", ""); ;
-
-                cliente.InsertOrUpdate(objCliente);
 
 
-                CarregarGrid();
-                gridDados.DataBind();
-            
+            var cliente = new EmpresaCrud();
+            var objCliente = new EmpresaModel();
+
+            objCliente.Id = Convert.ToInt32(hdn.Value);
+            objCliente.Nome = txtNome.Text;
+            objCliente.email = txtEmail.Text;
+            objCliente.Cep = txtCep.Text.Replace(".", "").Replace("/", "").Replace("-", ""); ;
+            objCliente.Cnpj = txtCnpj.Text.Replace(".", "").Replace("/", "").Replace("-", "");
+            objCliente.Contato = txtContato.Text;
+            objCliente.Endereço = txtEndereco.Text;
+            objCliente.Uf = txtEstado.Text;
+            objCliente.Municipio = txtMun.Text;
+            objCliente.Telefone = txtTelefone.Text.Replace("(", "").Replace(")", "").Replace("-", ""); ;
+
+            var cadastro = cliente.InsertOrUpdate(objCliente);
+
+            txtResposta.Text = cadastro;
+            CarregarGrid();
+            gridDados.DataBind();
+            ModalResposta.Show();
 
 
+        }
+        public void LimpaCampos()
+        {
+            hdn.Value = string.Empty;
+            txtNome.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtCep.Text = string.Empty;
+            txtCnpj.Text = string.Empty;
+            txtContato.Text = string.Empty;
+            txtEndereco.Text = string.Empty;
+            txtEstado.Text = string.Empty;
+            txtMun.Text = string.Empty;
+            txtTelefone.Text = string.Empty;
         }
     }
 }

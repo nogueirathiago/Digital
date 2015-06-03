@@ -4,39 +4,21 @@
 <%@ Register TagPrefix="asp" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=15.1.2.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <script type="text/javascript" src="../Scripts/Empresa.js"></script>
     <asp:HiddenField runat="server" ID="hdn" />
-    <%--<asp:FormView runat="server" ID="FormCadastro" DefaultMode="Insert" ItemType="DigitalbEFF.Model.EmpresaModel" InsertMethod="FormCadastro_InsertItem"
-        CellPadding="4" ForeColor="#333333" DataKeyNames="Id">
-        <InsertItemTemplate>
-            Nome:<br />
-            <asp:TextBox ID="NomeTextBox" runat="server" Text='<%# BindItem.Nome %>' />
-            <br />
-            Email:<br />
-            <asp:TextBox ID="EmailTextBox" runat="server" Text='<%# BindItem.email %>' />
-            <br />
-            Data de Nascimento:<br />
-            <asp:TextBox ID="DataNascimentoTextBox" runat="server" Text='<%# BindItem.DataNascimento %>' />
-            <br />
 
-            <asp:LinkButton ID="AdicionarButton" runat="server" CommandName="Adicionar" Text ="Adicionar"></asp:LinkButton>
+    <div>
+        <asp:TextBox ID="txtPesquisa" runat="server" ></asp:TextBox>
+        <asp:DropDownList runat="server" ID="ddlPesquisa" Height="30px" Width="100px" Font-Size="Medium">
+            <asp:ListItem Text="Nome" Value="1"/>
+            <asp:ListItem Text="Cnpj" Value="2"/>
+        </asp:DropDownList>
+         <asp:Button ID="Button1" runat="server" Text="Pesquisar"   OnClick="btn_Pesquisar" ClientIDMode="Static" />
+    </div>
 
-            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Salvar" />
-              <asp:HyperLink ID="linkModal" runat="server">HyperLink</asp:HyperLink>
-
-            &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
-
-            <asp:ValidationSummary runat="server" ID="validation" DisplayMode="BulletList" ShowSummary="true" ForeColor="Red" />
-
-        </InsertItemTemplate>
-        <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-        <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-
-    </asp:FormView>--%>
-
-
-    <asp:GridView ID="gridDados" runat="server" ItemType="DigitalbEFF.Model.EmpresaModel" SelectMethod="CarregarGrid" DataKeyNames="Id" OnRowCommand="gridDados_RowCommand">
+    <asp:GridView ID="gridDados" runat="server" ItemType="DigitalbEFF.Model.EmpresaModel"  DataKeyNames="Id" OnRowCommand="gridDados_RowCommand">
         <Columns>
             <asp:TemplateField ShowHeader="false">
                 <ItemTemplate>
@@ -50,6 +32,9 @@
             </asp:TemplateField>
 
         </Columns>
+        <EmptyDataTemplate>
+            Nenhum Registro Encontrado.
+        </EmptyDataTemplate>
     </asp:GridView>
     <div>
         <asp:HyperLink ID="linkModal" runat="server" Visible="false">HyperLink</asp:HyperLink>
@@ -59,6 +44,22 @@
     </asp:ModalPopupExtender>
     <asp:ModalPopupExtender ID="ModalInsert" runat="server" TargetControlID="HyperLink1" PopupControlID="PainelModal">
     </asp:ModalPopupExtender>
+    <asp:ModalPopupExtender ID="ModalResposta" runat="server" TargetControlID="HyperLink1" PopupControlID="pnlResposta">
+    </asp:ModalPopupExtender>
+
+
+
+    <asp:Panel ID="pnlResposta" runat="server" Style="width: 400px; background: #7AC0DA; height: 110px;" CssClass="modalPopup">
+        <div>
+            <h1 style="text-align: center; font-size: 14px; font-family: Verdana; background-color: #7AC0DA;">
+                <asp:TextBox ID="txtResposta" BackColor="#7AC0DA" runat="server"></asp:TextBox>
+                <br />
+                <asp:Button ID="Button2" runat="server" Text="OK" OnClientClick="limpaCampos()" />
+            </h1>
+        </div>
+        <div style="text-align: center;">
+        </div>
+    </asp:Panel>
 
     <asp:Panel ID="PainelModal" runat="server" Style="display: none" Width="750px" CssClass="modalPopup">
         <asp:Panel ID="PainelCabecalho" runat="server" Style="border-bottom: solid 1px Gray; height: 25px;">
@@ -89,9 +90,9 @@
                     <td>Cnpj:</td>
                     <td>
                         <asp:TextBox ID="txtCnpj" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
-                    <asp:RequiredFieldValidator ID="rfvtxtCnpj" ControlToValidate="txtCnpj"
-                        runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
-                        ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvtxtCnpj" ControlToValidate="txtCnpj"
+                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
+                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -141,7 +142,7 @@
                         <asp:RequiredFieldValidator ID="rfvtxtEstado" ControlToValidate="txtEstado"
                             runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
                             ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
-  
+
                     </td>
                 </tr>
                 <tr>
@@ -181,6 +182,5 @@
 
         </div>
     </asp:Panel>
-
 </asp:Content>
 

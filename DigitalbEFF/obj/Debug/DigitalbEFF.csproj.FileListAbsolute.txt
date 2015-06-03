@@ -31,6 +31,8 @@ C:\Users\Thiago\documents\visual studio 2012\Projects\DigitalbEFF\DigitalbEFF\ob
 C:\Users\Thiago\documents\visual studio 2012\Projects\DigitalbEFF\DigitalbEFF\obj\Debug\DigitalbEFF.dll
 C:\Users\Thiago\documents\visual studio 2012\Projects\DigitalbEFF\DigitalbEFF\obj\Debug\DigitalbEFF.pdb
 C:\Users\Thiago\documents\visual studio 2012\Projects\DigitalbEFF\DigitalbEFF\bin\AjaxControlToolkit.dll
+C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.Migrations.k.resources
+C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.csproj.GenerateResource.Cache
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\DigitalbEFF.dll
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\DigitalbEFF.pdb
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\AjaxControlToolkit.dll
@@ -61,8 +63,5 @@ C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.OAuth.Co
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.OpenId.xml
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.AspNet.xml
-C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.csprojResolveAssemblyReference.cache
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.dll
 C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.pdb
-C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.Migrations.k.resources
-C:\Users\Thiago\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.csproj.GenerateResource.Cache

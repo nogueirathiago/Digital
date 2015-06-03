@@ -12,18 +12,29 @@ namespace DigitalbEFF.Model
     public class EmpresaCrud
     {
         ContextModels db = new ContextModels();
-        public void InsertOrUpdate(EmpresaModel empresa)
+        public string InsertOrUpdate(EmpresaModel empresa)
         {
             try
             {
+                var original = db.Empresas.Find(empresa.Id);
                 if (empresa.Id != 0)
                 {
-                    //db.Empresas.
+                    db.Entry(original).CurrentValues.SetValues(empresa);
+                    db.SaveChanges();
+                    return "Atualização efetuada com sucesso!";
                 }
                 else
                 {
+                    var existente = db.Empresas.Where(i => i.Cnpj == empresa.Cnpj);
+
+                    if (existente != null)
+                    {
+                        return "Já existe uma empresa com o mesmo CNPJ cadastrado!";
+                    }
+
                     db.Empresas.Add(empresa);
                     db.SaveChanges();
+                    return "Cadastro efetuado com sucesso!";
                 }
 
             }
@@ -31,7 +42,7 @@ namespace DigitalbEFF.Model
             {
                 throw new Exception("Error ao carregar os dados" + ex.Message);
             }
-           
+
         }
 
         public void Delete(int id)
@@ -40,13 +51,13 @@ namespace DigitalbEFF.Model
             db.Empresas.Remove(cliente);
             db.SaveChanges();
         }
-        public IQueryable<EmpresaModel> CarregarDados()
+        public List<EmpresaModel> CarregarDados()
         {
             try
             {
                 var dados = db.Empresas;
 
-                return dados;
+                return dados.ToList();
             }
             catch (Exception ex)
             {
@@ -60,14 +71,25 @@ namespace DigitalbEFF.Model
             {
                 return db.Empresas.FirstOrDefault(x => x.Id == id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
+            }
+        }
+        public EmpresaModel PesquisarPorNome(string nome)
+        {
+            try
+            {
+                return db.Empresas.FirstOrDefault(x => x.Nome.Contains(nome));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
-        
+
 
     }
 }
