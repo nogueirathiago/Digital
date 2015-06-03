@@ -96,7 +96,5 @@ C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.Open
 C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\bin\DotNetOpenAuth.AspNet.xml
 C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.csprojResolveAssemblyReference.cache
-C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.Migrations.k.resources
-C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.csproj.GenerateResource.Cache
 C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.dll
 C:\Users\TechResult\Documents\GitHub\Digital\DigitalbEFF\obj\Debug\DigitalbEFF.pdb

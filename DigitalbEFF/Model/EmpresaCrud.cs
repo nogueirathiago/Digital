@@ -25,12 +25,12 @@ namespace DigitalbEFF.Model
                 }
                 else
                 {
-                    var existente = db.Empresas.Where(i => i.Cnpj == empresa.Cnpj);
+                    //var existente = db.Empresas.Where(i => i.Cnpj == empresa.Cnpj);
 
-                    if (existente != null)
-                    {
-                        return "Já existe uma empresa com o mesmo CNPJ cadastrado!";
-                    }
+                    //if (existente != null)
+                    //{
+                    //    return "Já existe uma empresa com o mesmo CNPJ cadastrado!";
+                    //}
 
                     db.Empresas.Add(empresa);
                     db.SaveChanges();

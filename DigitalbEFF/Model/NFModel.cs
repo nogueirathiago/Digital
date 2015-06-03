@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,11 +8,12 @@ namespace DigitalbEFF.Model
 {
     public class NFModel
     {
+        [Key]
         public int Id { get; set; }
 
-        public int NF { get; set; }
+        public int? NF { get; set; }
 
-        public virtual ICollection<BalancaModel> Balancas { get; set; }
+        public int ID_Balancas { get; set; }
 
         public int Qt_Balanca { get; set; }
 
@@ -21,6 +23,5 @@ namespace DigitalbEFF.Model
 
         public decimal Total { get; set; }
 
-        public ICollection<PedidosModel> Pedidos { get; set; }
     }
 }

@@ -91,7 +91,7 @@ namespace DigitalbEFF.Pages
             var cliente = new EmpresaCrud();
             var objCliente = new EmpresaModel();
 
-            objCliente.Id = Convert.ToInt32(hdn.Value);
+            objCliente.Id = hdn.Value == string.Empty ? 0 : Convert.ToInt32(hdn.Value);
             objCliente.Nome = txtNome.Text;
             objCliente.email = txtEmail.Text;
             objCliente.Cep = txtCep.Text.Replace(".", "").Replace("/", "").Replace("-", ""); ;
