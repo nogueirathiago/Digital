@@ -65,6 +65,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+
         <header>
         <div class="content-wrapper">
             <div class="float-left">

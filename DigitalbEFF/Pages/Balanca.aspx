@@ -60,7 +60,7 @@
         <asp:Panel ID="PainelCabecalho" runat="server" Style="border-bottom: solid 1px Gray; height: 25px;">
             <div>
                 <h1 style="line-height: 25px; text-align: center; font-size: 14px; font-family: Verdana; background-color: #7AC0DA;">
-                    <asp:Label ID="txtTitulo" Text="Dados da Empresa" runat="server"></asp:Label>
+                    <asp:Label ID="txtTitulo" Text="Dados da Balança" runat="server"></asp:Label>
                 </h1>
             </div>
         </asp:Panel>

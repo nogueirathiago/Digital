@@ -5,24 +5,24 @@ using System.Web;
 
 namespace DigitalbEFF.Model
 {
-    public class PedidosCrud
+    public class NFCrud
     {
         ContextModels db = new ContextModels();
-        public string InsertOrUpdate(PedidosModel pedidos)
+        public string InsertOrUpdate(NFModel NFs)
         {
             try
             {
-                var original = db.Pedidos.Find(pedidos.Id);
-                if (pedidos.Id != 0)
+                var original = db.NF.Find(NFs.Id);
+                if (NFs.Id != 0)
                 {
-                    db.Entry(original).CurrentValues.SetValues(pedidos);
+                    db.Entry(original).CurrentValues.SetValues(NFs);
                     db.SaveChanges();
                     return "Atualização efetuada com sucesso!";
                 }
                 else
                 {
 
-                    db.Pedidos.Add(pedidos);
+                    db.NF.Add(NFs);
                     db.SaveChanges();
                     return "Cadastro efetuado com sucesso!";
                 }
@@ -41,18 +41,18 @@ namespace DigitalbEFF.Model
             db.Pedidos.Remove(cliente);
             db.SaveChanges();
         }
-        public List<PedidosModel> CarregarDados()
+        public List<NFModel> CarregarDados()
         {
             try
             {
-                var dados = db.Pedidos;
+                var dados = db.NF;
 
                 foreach(var dado in dados)
                 {
-                    var verifica = new EmpresaCrud().PesquisarPorId(dado.ID_Empresa);
+                    var verifica = new BalancaCrud().PesquisarPorId(dado.Id);
                     if (verifica != null)
                     {
-                        dado.NomeEmpresa = verifica.Nome;
+                        dado.NomeBalanca = verifica.Modelo;
                     }
                 }
 
@@ -64,11 +64,11 @@ namespace DigitalbEFF.Model
             }
         }
 
-        public PedidosModel PesquisarPorId(int id)
+        public NFModel PesquisarPorNF(int NF)
         {
             try
             {
-                return db.Pedidos.FirstOrDefault(x => x.Id == id);
+                return db.NF.FirstOrDefault(x => x.NF == NF);
             }
             catch (Exception)
             {

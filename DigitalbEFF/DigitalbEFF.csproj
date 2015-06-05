@@ -305,6 +305,7 @@
     </Compile>
     <Compile Include="Model\BalancaCrud.cs" />
     <Compile Include="Model\BalancaModel.cs" />
+    <Compile Include="Model\NFCrud.cs" />
     <Compile Include="Model\PedidosCrud.cs" />
     <Compile Include="Model\NFModel.cs" />
     <Compile Include="Model\PedidosModel.cs" />

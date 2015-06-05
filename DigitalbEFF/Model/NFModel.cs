@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DigitalbEFF.Model
 {
@@ -14,6 +15,9 @@ namespace DigitalbEFF.Model
         public int? NF { get; set; }
 
         public int ID_Balancas { get; set; }
+
+        [NotMapped]
+        public string NomeBalanca { get; set; }
 
         public int Qt_Balanca { get; set; }
 
