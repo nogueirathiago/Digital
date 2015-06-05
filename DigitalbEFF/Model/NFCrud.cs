@@ -64,11 +64,14 @@ namespace DigitalbEFF.Model
             }
         }
 
-        public NFModel PesquisarPorNF(int NF)
+        public List<NFModel> PesquisarPorNF(int NF)
         {
             try
             {
-                return db.NF.FirstOrDefault(x => x.NF == NF);
+                var a = CarregarDados().FindAll(x => x.NF == NF);
+
+                return a;
+          
             }
             catch (Exception)
             {

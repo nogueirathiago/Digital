@@ -28,9 +28,8 @@ namespace DigitalbEFF.Pages
         protected void gridDados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var cliente = new EmpresaCrud();
-            var objeCliente = new EmpresaModel();
+            var objCliente = new EmpresaModel();
             var id = Convert.ToInt32(e.CommandArgument);
-            int idNF = Convert.ToInt32(gridDados.Rows[id].Cells[1].Text);
             hdn.Value = id.ToString();
             hdnFim.Value = string.Empty;
             
@@ -59,7 +58,7 @@ namespace DigitalbEFF.Pages
                     ModalInsert.Show();
                     break;
                 case "NF":
-                    CarregarModalNF(idNF);
+                    CarregarModalNF(id);
                     ModalNF.Show();
                     break;
                 default:
@@ -104,37 +103,12 @@ namespace DigitalbEFF.Pages
 
         public void CarregarModalNF(int id)
         {
-            var user = new PedidosCrud();
-            ddlEmpresa_Bind();
-            txtCd_Pedido.Text = id.ToString();
-            if (id != 0)
-            {
-                var objUser = user.PesquisarPorId(id);
-                txtNF.Text = objUser.ID_Nf.ToString();
-                ddlEmpresa.SelectedValue = objUser.ID_Empresa.ToString();
-                txtDtLocacao.Text = objUser.DataLocacao.ToString();
-                txtDtRetorno.Text = objUser.DataRetorno.ToString();
-            }
-            else
-            {
-                rfvDtRetorno.Enabled = false;
-                DateValidator1.Enabled = false;
-            }
-            txtCd_Pedido.Enabled = false;
+            var pedido = new PedidosCrud().PesquisarPorNF(id);
+            var user = new NFCrud().PesquisarPorNF(id);
 
-            if (hdnFim.Value != string.Empty)
-            {
-                txtNF.Enabled = false;
-                ddlEmpresa.Enabled = false;
-                txtDtLocacao.Enabled = false;
-            }
-            else
-            {
-                txtNF.Enabled = true;
-                ddlEmpresa.Enabled = true;
-                txtDtLocacao.Enabled = true;
-            }
-
+            lblTitPedido.Text = pedido.Id.ToString();
+            lblTitEmpresa.Text = pedido.NomeEmpresa;
+            lblTitNf.Text = pedido.ID_Nf.ToString();
         }
 
 
@@ -230,6 +204,16 @@ namespace DigitalbEFF.Pages
         }
 
         protected void BtnNF_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gdvNF_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void gdvNF_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
         }

@@ -181,82 +181,107 @@
                 </h1>
             </div>
         </asp:Panel>
-
+            
         <div>
+            <div style="line-height: 20px; text-align: center; font-size: 12px; font-family: Verdana; background-color: #7AC0DA;">
+                Pedido: <asp:Label ID="lblTitPedido" runat="server"></asp:Label>
+            </div >
+            <div style="line-height: 20px; text-align: center; font-size: 12px; font-family: Verdana; background-color: #7AC0DA;">
+                NF: <asp:Label ID="lblTitNf" runat="server"></asp:Label>
+            </div >
+            <div style="line-height:20px; text-align: center; font-size: 12px; font-family: Verdana; background-color: #7AC0DA;">
+                Empresa: <asp:Label ID="lblTitEmpresa" runat="server"></asp:Label></div>
             <br />
             <br />
 
+            <asp:GridView ID="gdvNF" runat="server" DataKeyNames="Id" AutoGenerateColumns="False" CssClass="cssGrid" OnRowEditing="gdvNF_RowEditing" OnRowDeleting="gdvNF_RowDeleting" OnRowCommand="gridDados_RowCommand" HeaderStyle-BackColor="#7AC0DA" HeaderStyle-ForeColor="White"
+                RowStyle-BackColor="#d3dce0" AlternatingRowStyle-BackColor="White" AlternatingRowStyle-ForeColor="#000">
+                <Columns>
 
-            <table width="700px" style="margin-left: 10%;">
-                <tr>
-                    <td>Pedido:
-                        <asp:Label ID="lblPedido" runat="server"></asp:Label></td>
-                    <td>Nota Fiscal:
-                        <asp:Label ID="lblNF" runat="server"></asp:Label>Empresa:
-                        <asp:Label ID="lblEmpresa" runat="server"></asp:Label></td>
+                    <asp:TemplateField HeaderText="Balanças:">
+                        <EditItemTemplate>
+                            <asp:DropDownList runat="server" ID="ddlBalancaEdit" Text='<%#Eval("NomeBalanca") %>' ClientIDMode="Static" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblBalancaEdit" Text='<%#Eval("NomeBalanca") %>' ClientIDMode="Static" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:DropDownList runat="server" ID="ddlBalanca" ClientIDMode="Static" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
+                                ControlToValidate="ddlBalanca" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Quantidade:">
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="txtQuandidadeEdit" ClientIDMode="Static" Text='<%#Eval("Qt_Balanca")%>' />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblQuantidade" Text='<%#Eval("Qt_Balanca")%>' ClientIDMode="Static" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox ID="txtQuandidade" runat="server" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
+                                ControlToValidate="txtQuandidade" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Situação">
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="txtDtNFEdit" ClientIDMode="Static" Text='<%#Eval("DataNF")%>' />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblDtNF" Text='<%#Eval("DataNF")%>' ClientIDMode="Static" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox ID="txtDtNF" runat="server" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
+                                ControlToValidate="txtDtNF" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+                        </FooterTemplate>
+                    </asp:TemplateField>
 
-                </tr>
-                <tr>
-                    <td>Balança:</td>
-                    <td>
-                        <asp:DropDownList runat="server" ID="ddlBalanca" Width="412px" ClientIDMode="Static" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="txtEmpresa" ControlToValidate="ddlBalanca"
-                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
-                            ValidationGroup="Salvar" InitialValue="Selecione..."></asp:RequiredFieldValidator>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Quantidade:</td>
-                    <td>
-                        <asp:TextBox runat="server" ID="txtQuantidade" CssClass="txtEmpresa" ClientIDMode="Static" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" CssClass="txtQuantidade" ControlToValidate="txtQuantidade"
-                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
-                            ValidationGroup="Salvar"></asp:RequiredFieldValidator>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Data da NF:</td>
-                    <td>
-                        <asp:TextBox ID="txtDTNF" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtDTNF"
-                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
-                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
-                        <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="DataTypeCheck" BackColor="Red" ForeColor="White"
-                            Type="Date" ControlToValidate="txtDTNF" ErrorMessage="Data Invalída" ValidationGroup="Salvar" />
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Valor Unitário:</td>
-                    <td>
-                        <asp:TextBox ID="txtValor" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtValor" Enabled="true"
-                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
-                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Valor Total:</td>
-                    <td>
-                        <asp:TextBox ID="txtValorTotal" runat="server" CssClass="txtEmpresa" ClientIDMode="Static" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="txtValorTotal" Enabled="true"
-                            runat="server" ErrorMessage="*Campo Obrigatório" SetFocusOnError="true" Display="Static" ForeColor="Red"
-                            ValidationGroup="Salvar" InitialValue=""></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-
-            </table>
-
-
+                    <asp:TemplateField HeaderText="Valor">
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="txtValorEdit" ClientIDMode="Static" Text='<%#Eval("ValorNF")%>' />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblValor" Text='<%#Eval("ValorNF")%>' ClientIDMode="Static" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox ID="txtValor" runat="server" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
+                                ControlToValidate="txtValor" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <EditItemTemplate>
+                            <asp:LinkButton ID="lbtnUpdate" runat="server" CommandName="Update"
+                                Text="Update" />
+                            <asp:LinkButton ID="lbtnCancel" runat="server" CommandName="Cancel"
+                                Text="Cancel" />
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Edit"
+                                Text="Edit" />
+                            <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete"
+                                OnClientClick="return confirm('Are you sure you want to delete this record?')"
+                                Text="Delete" CausesValidation="false" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:LinkButton ID="lbtnAdd" runat="server" CommandName="Add"
+                                Text="Add New" ValidationGroup="Salvar_NF" />
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <EmptyDataTemplate>
+                    Nenhum Registro Encontrado.
+                </EmptyDataTemplate>
+            </asp:GridView>
             <div style="text-align: center;">
-                <asp:Button ID="Button2" runat="server" Text="Salvar" OnClick="btnSalvar_Click" CausesValidation="True" ValidationGroup="Salvar" ClientIDMode="Static" />
-                <asp:Button ID="Button3" runat="server" Text="Cancelar" OnClientClick="limpaCampos()" />
+                <asp:Button ID="Button3" runat="server" Text="Cancelar" />
             </div>
-
-
-
         </div>
     </asp:Panel>
 </asp:Content>

@@ -76,6 +76,23 @@ namespace DigitalbEFF.Model
                 throw;
             }
         }
+
+        public PedidosModel PesquisarPorNF(int id)
+        {
+            try
+            {
+                var pedido = db.Pedidos.FirstOrDefault(x => x.ID_Nf == id);
+                var verifica = new EmpresaCrud().PesquisarPorId(pedido.Id);
+                pedido.NomeEmpresa = verifica.Nome;
+                return pedido;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+   
       
     }
 }
