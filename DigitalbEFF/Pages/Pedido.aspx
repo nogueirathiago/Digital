@@ -6,7 +6,7 @@
 
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="http://localhost:60199/code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="../Scripts/Pedidos.js"></script>
     <asp:HiddenField runat="server" ID="hdn" ClientIDMode="Static" />
@@ -174,68 +174,69 @@
         </div>
     </asp:Panel>
     <asp:Panel ID="PnlNF" runat="server" Style="display: none" Width="750px" CssClass="modalPopup">
-        <asp:Panel ID="Panel2" runat="server" Style="border-bottom: solid 1px Gray; height: 25px;">
+        <asp:Panel ID="Panel2" runat="server" Style="border-bottom: solid 1px Gray; ">
             <div>
-                <h1 style="line-height: 25px; text-align: center; font-size: 14px; font-family: Verdana; background-color: #7AC0DA;">
+                <h1 style="line-height: 25px;margin-top:0px; text-align: center; font-size: 14px; font-family: Verdana; background-color: #7AC0DA;">
                     <asp:Label ID="Label1" Text="Dados da Nota Fiscal" runat="server"></asp:Label>
                 </h1>
             </div>
         </asp:Panel>
-            
+
         <div>
             <div style="line-height: 20px; text-align: center; font-size: 12px; font-family: Verdana; background-color: #7AC0DA;">
-                Pedido: <asp:Label ID="lblTitPedido" runat="server"></asp:Label>
-            </div >
+                Pedido:
+                <asp:Label ID="lblTitPedido" runat="server"></asp:Label>
+            </div>
             <div style="line-height: 20px; text-align: center; font-size: 12px; font-family: Verdana; background-color: #7AC0DA;">
-                NF: <asp:Label ID="lblTitNf" runat="server"></asp:Label>
-            </div >
-            <div style="line-height:20px; text-align: center; font-size: 12px; font-family: Verdana; background-color: #7AC0DA;">
-                Empresa: <asp:Label ID="lblTitEmpresa" runat="server"></asp:Label></div>
-            <br />
-            <br />
-
-            <asp:GridView ID="gdvNF" runat="server" DataKeyNames="Id" AutoGenerateColumns="False" CssClass="cssGrid" OnRowEditing="gdvNF_RowEditing" OnRowDeleting="gdvNF_RowDeleting" OnRowCommand="gridDados_RowCommand" HeaderStyle-BackColor="#7AC0DA" HeaderStyle-ForeColor="White"
-                RowStyle-BackColor="#d3dce0" AlternatingRowStyle-BackColor="White" AlternatingRowStyle-ForeColor="#000">
+                NF:
+                <asp:Label ID="lblTitNf" runat="server"></asp:Label>
+            </div>
+            <div style="line-height: 20px; text-align: center; font-size: 12px; font-family: Verdana; margin-bottom:-10px; background-color: #7AC0DA;">
+                Empresa:
+                <asp:Label ID="lblTitEmpresa" runat="server"></asp:Label>
+            </div>
+            <asp:GridView ID="gdvNF" runat="server" DataKeyNames="Id" AutoGenerateColumns="False" OnRowEditing="gdvNF_RowEditing" OnRowDeleting="gdvNF_RowDeleting" OnRowCommand="gdvNF_RowCommand" HeaderStyle-BackColor="#7AC0DA" HeaderStyle-ForeColor="White"
+               Width="750px" style="border-top:1px solid gray" RowStyle-BackColor="#d3dce0" AlternatingRowStyle-BackColor="White" OnRowCreated="gdvNF_RowCreated" AlternatingRowStyle-ForeColor="#000" ShowFooter="true">
                 <Columns>
 
-                    <asp:TemplateField HeaderText="Balanças:">
+                    <asp:TemplateField HeaderText="Balança">
                         <EditItemTemplate>
-                            <asp:DropDownList runat="server" ID="ddlBalancaEdit" Text='<%#Eval("NomeBalanca") %>' ClientIDMode="Static" />
+                            <asp:DropDownList runat="server" ID="ddlBalancaEdit" ClientIDMode="Static" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblBalancaEdit" Text='<%#Eval("NomeBalanca") %>' ClientIDMode="Static" />
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:DropDownList runat="server" ID="ddlBalanca" ClientIDMode="Static" />
-                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
-                                ControlToValidate="ddlBalanca" ValidationGroup="Salvar_NF"
+                            <asp:DropDownList runat="server" ID="ddlBalanca1" ClientIDMode="Static" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName1" runat="server" Text="*"
+                                ControlToValidate="ddlBalanca1" ValidationGroup="Salvar_NF"
                                 ForeColor="Red" />
                         </FooterTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Quantidade:">
+                    <asp:TemplateField HeaderText="Quantidade">
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="txtQuandidadeEdit" ClientIDMode="Static" Text='<%#Eval("Qt_Balanca")%>' />
+                            <asp:TextBox runat="server" ID="txtQuandidadeEdit" Width="100px" ClientIDMode="Static" Text='<%#Eval("Qt_Balanca")%>' />
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label runat="server" ID="lblQuantidade" Text='<%#Eval("Qt_Balanca")%>' ClientIDMode="Static" />
+                            <asp:Label runat="server" ID="lblQuantidade" Width="100px" Text='<%#Eval("Qt_Balanca")%>' ClientIDMode="Static" />
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="txtQuandidade" runat="server" />
-                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
+                            <asp:TextBox ID="txtQuandidade" Width="100px" runat="server" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName2" Width="100px" runat="server" Text="*"
                                 ControlToValidate="txtQuandidade" ValidationGroup="Salvar_NF"
                                 ForeColor="Red" />
                         </FooterTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Situação">
+                    <asp:TemplateField HeaderText="Data NF">
                         <EditItemTemplate>
                             <asp:TextBox runat="server" ID="txtDtNFEdit" ClientIDMode="Static" Text='<%#Eval("DataNF")%>' />
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label runat="server" ID="lblDtNF" Text='<%#Eval("DataNF")%>' ClientIDMode="Static" />
+                            <asp:Label runat="server" ID="lblDtNF" Text='<%#string.Format("{0:dd/MM/yyyy}",Eval("DataNF"))%>' ClientIDMode="Static" />
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="txtDtNF" runat="server" />
-                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
+                            <asp:TextBox ID="txtDtNF" runat="server" Width="100px" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName3" runat="server" Text="*"
                                 ControlToValidate="txtDtNF" ValidationGroup="Salvar_NF"
                                 ForeColor="Red" />
                         </FooterTemplate>
@@ -249,8 +250,8 @@
                             <asp:Label runat="server" ID="lblValor" Text='<%#Eval("ValorNF")%>' ClientIDMode="Static" />
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox ID="txtValor" runat="server" />
-                            <asp:RequiredFieldValidator ID="rfvSubjectName" runat="server" Text="*"
+                            <asp:TextBox ID="txtValor" runat="server" Width="100px" />
+                            <asp:RequiredFieldValidator ID="rfvSubjectName4" runat="server" Text="*"
                                 ControlToValidate="txtValor" ValidationGroup="Salvar_NF"
                                 ForeColor="Red" />
                         </FooterTemplate>
@@ -263,20 +264,61 @@
                                 Text="Cancel" />
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Edit"
+                            <asp:LinkButton ID="lbtnEdit" runat="server" CommandName="Editar"
                                 Text="Edit" />
-                            <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete"
+                            <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Deletar"
                                 OnClientClick="return confirm('Are you sure you want to delete this record?')"
                                 Text="Delete" CausesValidation="false" />
                         </ItemTemplate>
                         <FooterTemplate>
                             <asp:LinkButton ID="lbtnAdd" runat="server" CommandName="Add"
-                                Text="Add New" ValidationGroup="Salvar_NF" />
+                                Text="Adicionar" ValidationGroup="Salvar_NF" />
                         </FooterTemplate>
                     </asp:TemplateField>
                 </Columns>
                 <EmptyDataTemplate>
-                    Nenhum Registro Encontrado.
+                    <table style="flex-align: center; width:600px">
+                        <tr>
+                            <th>Balança</th>
+                            <th>Quantidade</th>
+                            <th>Data NF</th>
+                            <th>Valor</th>
+                            <td></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <asp:DropDownList runat="server" ID="ddlBalanca" ClientIDMode="Static" /></td>
+                            <asp:RequiredFieldValidator ID="rfvSubjectName5" runat="server" Text="*"
+                                ControlToValidate="ddlBalanca" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+
+
+
+                            <td>
+                                <asp:TextBox ID="txtQuandidade" runat="server" Width="100px" /></td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Text="*"
+                                ControlToValidate="txtQuandidade" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+
+                            <td>
+                                <asp:TextBox ID="txtDtNF" runat="server" Width="100px" /></td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Text="*"
+                                ControlToValidate="txtDtNF" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+
+                            <td>
+                                <asp:TextBox ID="txtValor" runat="server" Width="100px" /></td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" Text="*"
+                                ControlToValidate="txtValor" ValidationGroup="Salvar_NF"
+                                ForeColor="Red" />
+                            <td>
+                                <asp:LinkButton ID="lbtnAdd" runat="server" CommandName="Add"
+                                    Text="Adicionar" ValidationGroup="Salvar_NF" /></td>
+                        </tr>
+                    </table>
+
                 </EmptyDataTemplate>
             </asp:GridView>
             <div style="text-align: center;">

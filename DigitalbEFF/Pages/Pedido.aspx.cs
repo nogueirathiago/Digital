@@ -32,7 +32,7 @@ namespace DigitalbEFF.Pages
             var id = Convert.ToInt32(e.CommandArgument);
             hdn.Value = id.ToString();
             hdnFim.Value = string.Empty;
-            
+
 
             switch (e.CommandName)
             {
@@ -61,10 +61,15 @@ namespace DigitalbEFF.Pages
                     CarregarModalNF(id);
                     ModalNF.Show();
                     break;
+
                 default:
                     break;
             }
         }
+
+
+
+
         public void CarregarModal(int id)
         {
             ModalResposta.Hide();
@@ -109,6 +114,9 @@ namespace DigitalbEFF.Pages
             lblTitPedido.Text = pedido.Id.ToString();
             lblTitEmpresa.Text = pedido.NomeEmpresa;
             lblTitNf.Text = pedido.ID_Nf.ToString();
+            gdvNF.DataSource = user;
+            gdvNF.DataBind();
+
         }
 
 
@@ -121,14 +129,14 @@ namespace DigitalbEFF.Pages
             ddlEmpresa.DataBind();
             ddlEmpresa.Items.Insert(0, new ListItem("Selecione..."));
         }
-        protected void ddlBalanca_Bind()
+        protected void ddlBalanca_Bind(DropDownList ddlBalanca)
         {
             var balanca = new BalancaCrud().CarregarDados();
-            ddlEmpresa.DataSource = balanca;
-            ddlEmpresa.DataValueField = "Id";
-            ddlEmpresa.DataTextField = "Modelo";
-            ddlEmpresa.DataBind();
-            ddlEmpresa.Items.Insert(0, new ListItem("Selecione..."));
+            ddlBalanca.DataSource = balanca;
+            ddlBalanca.DataValueField = "Id";
+            ddlBalanca.DataTextField = "Modelo";
+            ddlBalanca.DataBind();
+            ddlBalanca.Items.Insert(0, new ListItem("Selecione..."));
         }
         protected void btn_Pesquisar(object sender, EventArgs e)
         {
@@ -147,13 +155,10 @@ namespace DigitalbEFF.Pages
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
-
-
             var cliente = new PedidosCrud();
             var objCliente = new PedidosModel();
 
             objCliente.Id = hdn.Value == string.Empty ? 0 : Convert.ToInt32(hdn.Value);
-            //objCliente.Cd_Pedido = Convert.ToInt32(txtCd_Pedido.Text);
             objCliente.ID_Nf = Convert.ToInt32(txtNF.Text);
             objCliente.ID_Empresa = Convert.ToInt32(ddlEmpresa.SelectedValue);
             objCliente.DataLocacao = Convert.ToDateTime(txtDtLocacao.Text.Substring(0, 10));
@@ -162,7 +167,6 @@ namespace DigitalbEFF.Pages
             {
                 objCliente.DataRetorno = Convert.ToDateTime(txtDtRetorno.Text.Substring(0, 10));
                 objCliente.Situacao = "I";
-
             }
             else
             {
@@ -171,9 +175,27 @@ namespace DigitalbEFF.Pages
             }
 
 
-
-
-
+            if (objCliente.Situacao == "I")
+            {
+                var pesquisaNF = new NFCrud().PesquisarPorNF(objCliente.ID_Nf);
+                if (pesquisaNF.Count() == 1)
+                {
+                    var balancas = new BalancaCrud().PesquisarPorId(pesquisaNF[0].ID_Balancas);
+                    balancas.Disponíveis = balancas.Disponíveis + pesquisaNF[0].Qt_Balanca;
+                    balancas.Alugadas = balancas.Alugadas - pesquisaNF[0].Qt_Balanca;
+                }
+                else if (pesquisaNF.Count() > 1)
+                {
+                    var pesquisaBalanca = new BalancaCrud().CarregarDados();
+                    for(int i = 0; i < pesquisaNF.Count(); i++)
+                    {
+                        var balancas = new BalancaCrud().PesquisarPorId(pesquisaNF[i].ID_Balancas);
+                        balancas.Disponíveis = balancas.Disponíveis + pesquisaNF[i].Qt_Balanca;
+                        balancas.Alugadas = balancas.Alugadas - pesquisaNF[i].Qt_Balanca;
+                        var atualizaBalancas = new BalancaCrud().InsertOrUpdate(balancas);
+                    }
+                } 
+            }
             var cadastro = cliente.InsertOrUpdate(objCliente);
 
             txtResposta.Text = cadastro;
@@ -193,6 +215,31 @@ namespace DigitalbEFF.Pages
             txtDtLocacao.Text = string.Empty;
             ddlEmpresa.Items.Clear();
 
+        }
+
+        protected string SalvarNF(NFModel nf)
+        {
+            var verificaBalanca = new BalancaCrud().PesquisarPorId(nf.ID_Balancas);
+            if (verificaBalanca.Disponíveis < nf.Qt_Balanca)
+            {
+
+            }
+            else
+            {
+                verificaBalanca.Disponíveis = verificaBalanca.Disponíveis - nf.Qt_Balanca;
+                verificaBalanca.Alugadas = verificaBalanca.Alugadas + nf.Qt_Balanca;
+            }
+            try
+            {
+
+                var insere = new NFCrud().InsertOrUpdate(nf);
+                var AtualizaEstoque = new BalancaCrud().InsertOrUpdate(verificaBalanca);
+                return insere;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         protected void btnAdicionar_Click(object sender, EventArgs e)
@@ -218,9 +265,73 @@ namespace DigitalbEFF.Pages
 
         }
 
+        protected void gdvNF_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            NFModel nf = new NFModel();
+            if (e.CommandName == "Add")
+            {
+                TextBox txtQuandidade = gdvNF.Controls[0].Controls[0].FindControl("txtQuandidade") as TextBox;
+                TextBox txtDtNF = gdvNF.Controls[0].Controls[0].FindControl("txtDtNF") as TextBox;
+                TextBox txtValor = gdvNF.Controls[0].Controls[0].FindControl("txtValor") as TextBox;
+                DropDownList ddlBalanca = gdvNF.Controls[0].Controls[0].FindControl("ddlBalanca") as DropDownList;
+                nf.DataNF = Convert.ToDateTime(txtDtNF.Text);
+                nf.Qt_Balanca = Convert.ToInt32(txtQuandidade.Text);
+                nf.ValorNF = Convert.ToDecimal(txtValor.Text);
+                nf.ID_Balancas = Convert.ToInt32(ddlBalanca.SelectedValue);
+                nf.NF = Convert.ToInt32(lblTitNf.Text);
+                SalvarNF(nf);
+            }
 
+            //DropDownList ddl = GridView1.Controls[0].Controls[0].FindControl("ddl") as DropDownList;
+            var cliente = new EmpresaCrud();
+            var objCliente = new EmpresaModel();
+            var id = Convert.ToInt32(e.CommandArgument);
 
+            switch (e.CommandName)
+            {
+                case "Add":
 
+                    cliente.Delete(id);
+                    gridDados.DataBind();
+                    break;
 
+                case "Editar":
+                    rfvDtRetorno.Enabled = false;
+                    DateValidator1.Enabled = false;
+                    ModalResposta.Hide();
+                    CarregarModal(id);
+                    ModalInsert.Show();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        protected void gdvNF_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.EmptyDataRow)
+            {
+                DropDownList ddlBalanca = (DropDownList)e.Row.FindControl("ddlBalanca");
+                ddlBalanca_Bind(ddlBalanca);
+            }
+            else if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+                    DropDownList ddlBalancaEdit = (DropDownList)e.Row.FindControl("ddlBalancaEdit");
+                    if (ddlBalancaEdit != null)
+                        ddlBalanca_Bind(ddlBalancaEdit);
+                }
+              
+            }
+            else if(e.Row.RowType == DataControlRowType.Footer)
+            {
+                DropDownList ddlBalanca = (DropDownList)e.Row.FindControl("ddlBalanca1");
+                if (ddlBalanca != null)
+                    ddlBalanca_Bind(ddlBalanca);
+            }
+            
+        }
     }
 }

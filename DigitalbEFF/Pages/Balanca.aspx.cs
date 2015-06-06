@@ -75,7 +75,7 @@ namespace DigitalbEFF.Pages
 
             objCliente.Id = hdn.Value == string.Empty ? 0 : Convert.ToInt32(hdn.Value);
             objCliente.Modelo = txtModelo.Text;
-            objCliente.Total = Convert.ToInt32(txtTotal.Text); 
+            objCliente.Total = Convert.ToInt32(txtTotal.Text);
 
             var cadastro = cliente.InsertOrUpdate(objCliente);
 
